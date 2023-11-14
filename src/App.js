@@ -2,53 +2,47 @@ import { useState } from 'react';
 import { data } from './data';
 import './App.css';
 
-
 function App() {
-  const [person, setPerson] = useState(0);
-  const {id, name, description, age, image } = data[person];
 
-  const previousPerson = () => {
-    setPerson ((person=> {
-      person--;
-      if (person < 0) {
-        return data.length - 1
-      }
-      return person;
-    }))
-  }
+  const [wishes, setWishes] = useState(data);
 
-  const nextPerson = () => {
-    setPerson((person => {
-      person++;
-      if (person > data.length -1) {
-        person=0;
-      }
-      return person;
-    }))
+  const removeWish = (id) => {
+    let newWishes = wishes.filter((wish) => wish.id !==id);
+    setWishes(newWishes);
   }
 
   return (<div>
     <div className='container'>
-      <img src={image} width="300px" alt="person"/>
+      <h1>Мои {wishes.length} рождественских желания</h1>
     </div>
+    {wishes.map((wish => {
+      const {id, name, description, image, link} = wish;
+      return (<div key={id}>
+        <div className='container'>
+          <h2>{id} - {name}</h2>
+        </div>
+        <div className='container'>
+          <p>{description}</p>
+        </div>
+        <div className='container'>
+          <img class="image" src={image} width="350px" alt="wish"/>
+        </div>
+        <div className='container'>
+          <p> 🌐 {link}</p>
+        </div>
+        <div className='container'>
+          <button className='btn' onClick={()=> removeWish(id)}>Удалить</button>
+        </div>
 
-    <div>
-      <h1 className='container'>{id} - {name}</h1>
-    </div>
-    
-    <div className='container'>
-      <h2>{description}</h2>
-    </div>
 
-    <div className='container'>
-      <h2>{age}</h2>
-    </div>
-    
-    <div className='btn'>
-      <button onClick={previousPerson}>Previos</button>
-      <button onClick={nextPerson}>Next</button>
-    </div>
-    
+      </div>
+
+      )
+    }))}
+
+
+
+
     </div>
       )
 }

@@ -1,27 +1,27 @@
 body {
-  background-color: #D1E8E4;
+  background-color: #E0F4FF;
+  color: #164863;
+}
+
+h1 {
+  color: #87C4FF;
 }
 
 .container {
   display: flex;
   justify-content: center;
-  background-color: #D1E8E4;
 }
 
-.person {
-  margin: 10px;
+.image {
+  border-radius: 15px;
 }
 
 .btn {
-  display: flex;
- justify-content: space-evenly;
+  background-color: #39A7FF;
+  color: white;
+  padding: 15px;
+  border-radius: 15px;
+  border:none;
+  cursor: pointer;
 }
 
-button {
-  background-color: #C37B89;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  text-transform: uppercase;
-  width: 80px;
-}
